@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BinaryConversor</string>
+    <string name="decimal_value">Decimal value</string>
+    <string name="binary_value">Binary value</string>
+    <string name="converter">Converter</string>
+    <string name="decimal">Decimal</string>
+    <string name="binary">Binary</string>
+</resources>
