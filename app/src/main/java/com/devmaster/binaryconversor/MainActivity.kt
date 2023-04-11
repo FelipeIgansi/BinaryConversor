@@ -2,8 +2,10 @@ package com.devmaster.binaryconversor
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.devmaster.binaryconversor.databinding.ActivityMainBinding
+import kotlin.math.pow
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -14,30 +16,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.hide()
         binding.buttonConverter.setOnClickListener(this)
     }
-    private fun initializeValue(str: String): Int{
-       return if (str != "") str.toInt() else 0
-    }
 
     override fun onClick(v: View) {
         if (v.id == R.id.button_Converter) {
-            var valDecimal = initializeValue(binding.editTextDecimal.text.toString())
-            var valBinary = initializeValue(binding.editTextBinary.text.toString())
-            if (valDecimal != 0) { //decimal
-                var binary = ""
-                while (true) {
-                    binary += "${valDecimal % 2}"
-                    valDecimal /= 2
-                    if (valDecimal == 0) break
+            var decimalValue =  binding.editTextDecimal.text.toString().toIntOrNull()
+            var binaryValue = binding.editTextBinary.text.toString().toIntOrNull()
+            if (decimalValue != null) {
+                var strBinary = ""
+                while (decimalValue > 0) {
+                    strBinary = "${decimalValue % 2}$strBinary"
+                    decimalValue /= 2
                 }
-                var a = ""
-                for (i in binary.length - 1 downTo 0) {
-                    a += binary[i]
+                binding.editTextBinary.setText(strBinary)
+            } else if (binaryValue != 0) {
+                var total = 0
+                var binary = binaryValue.toString()
+                for (i in 0 until binary.toString().length){
+                    total += (binary[i].toString().toDouble() * (2.0.pow(i))).toInt()
                 }
-                binding.editTextBinary.setText(a)
-            } else if (valBinary != 0) {
 
+                binding.editTextDecimal.setText(total)
             } else {
-                //Apresentar erro
+                Toast.makeText(this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show()
             }
         }
     }
