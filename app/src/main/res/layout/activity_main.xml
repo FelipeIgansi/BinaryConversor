@@ -7,6 +7,19 @@
     android:padding="5dp"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:id="@+id/text_decimal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="186dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="@string/decimal"
+        app:layout_constraintBottom_toTopOf="@+id/editText_Decimal"
+        app:layout_constraintEnd_toEndOf="@+id/editText_Decimal"
+        app:layout_constraintStart_toStartOf="@+id/editText_Decimal" />
+
     <EditText
         android:id="@+id/editText_Decimal"
         android:layout_width="0dp"
@@ -20,6 +33,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button_Converter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginEnd="139dp"
+        android:text="@string/converter"
+        app:layout_constraintBottom_toTopOf="@+id/text_binary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Decimal" />
+
+    <TextView
+        android:id="@+id/text_binary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="@string/binary"
+        app:layout_constraintEnd_toEndOf="@+id/editText_Binary"
+        app:layout_constraintStart_toStartOf="@+id/editText_Binary"
+        app:layout_constraintBottom_toTopOf="@+id/editText_Binary" />
+
     <EditText
         android:id="@+id/editText_Binary"
         android:layout_width="0dp"
@@ -32,40 +68,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_Converter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="139dp"
-        android:text="@string/converter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Decimal" />
-
-    <TextView
-        android:id="@+id/text_decimal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="186dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="center"
-        android:text="@string/decimal"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Decimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_binary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:gravity="center"
-        android:text="@string/binary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_Converter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,10 +2,8 @@ package com.devmaster.binaryconversor
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.devmaster.binaryconversor.databinding.ActivityMainBinding
-import kotlin.math.pow
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -17,27 +15,41 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.buttonConverter.setOnClickListener(this)
     }
 
+    fun binaryToDecimal(binary: String): String {
+        var decimal = 0
+        var base = 1
+
+        for (i in binary.length - 1 downTo 0) {
+            if (binary[i] == '1') {
+                decimal += base
+            }
+            base *= 2
+        }
+
+        return decimal.toString()
+    }
+
+    fun decimalToBinary(decimal: Int): String {
+        var strBinary = ""
+        var dec = decimal
+        while (dec > 0) {
+            strBinary = "${dec % 2}$strBinary"
+            dec /= 2
+        }
+        return strBinary
+    }
+
     override fun onClick(v: View) {
         if (v.id == R.id.button_Converter) {
-            var decimalValue =  binding.editTextDecimal.text.toString().toIntOrNull()
-            var binaryValue = binding.editTextBinary.text.toString().toIntOrNull()
-            if (decimalValue != null) {
-                var strBinary = ""
-                while (decimalValue > 0) {
-                    strBinary = "${decimalValue % 2}$strBinary"
-                    decimalValue /= 2
-                }
-                binding.editTextBinary.setText(strBinary)
-            } else if (binaryValue != 0) {
-                var total = 0
-                var binary = binaryValue.toString()
-                for (i in 0 until binary.toString().length){
-                    total += (binary[i].toString().toDouble() * (2.0.pow(i))).toInt()
-                }
-
-                binding.editTextDecimal.setText(total)
-            } else {
-                Toast.makeText(this, "Ocorreu um erro!", Toast.LENGTH_SHORT).show()
+            val decimalValue = binding.editTextDecimal.text.toString().toIntOrNull()
+            val binaryValue = binding.editTextBinary.text.toString().toIntOrNull()
+            if (decimalValue != null && binaryValue != null) {
+                binding.editTextBinary.setText("")
+                binding.editTextDecimal.setText("")
+            } else if (decimalValue != null) {
+                binding.editTextBinary.setText(decimalToBinary(decimalValue))
+            } else if (binaryValue != null) {
+                binding.editTextDecimal.setText(binaryToDecimal(binaryValue.toString()))
             }
         }
     }
